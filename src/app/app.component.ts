@@ -18,24 +18,24 @@ export class AppComponent implements OnInit {
     ['0', '0', '0', '0', '0', '0', '1', '0']
   ]
 
-  resultArr = this.matrixArray.map(item => [...item])
+  resultArr = this.matrixArray.map(item => [...item]);
 
   markNeighbourElems(matrix: any, row: number, col: number): void {
-    matrix[row][col] = '5';
+    matrix[row][col] = '';
     if (matrix[row][col - 1] === '1'){
-      this.markNeighbourElems(matrix, row, col - 1)
+      this.markNeighbourElems(matrix, row, col - 1);
     }
 
     if (matrix[row][col + 1] === '1'){
-      this.markNeighbourElems(matrix, row, col + 1)
+      this.markNeighbourElems(matrix, row, col + 1);
     }
 
     if (matrix?.[row - 1]?.[col] === '1'){
-      this.markNeighbourElems(matrix, row - 1 , col)
+      this.markNeighbourElems(matrix, row - 1 , col);
     }
 
     if (matrix?.[row + 1]?.[col] === '1'){
-      this.markNeighbourElems(matrix, row + 1, col + 1)
+      this.markNeighbourElems(matrix, row + 1, col + 1);
     }
   }
 
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     let counter = 0;
 
     if (matrix.length === 0) {
-      this.figuresCount = 0;
+      return 0;
     }
 
     for (let i = 0; i < matrix.length; i++) {
