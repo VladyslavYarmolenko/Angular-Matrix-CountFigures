@@ -5,19 +5,6 @@
   font-size: 30px;
 }
 
-.matrix-wrapper {
-  display: flex;
-  justify-content: center;
-  max-width: 150px;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
-}
-
-.matrix {
-  display: flex;
-  justify-content: center;
-}
-
 .column {
   margin-right: 5px;
 }

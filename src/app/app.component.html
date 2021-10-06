@@ -1,6 +1,8 @@
 <div class="matrix-wrapper">
   <div *ngFor="let row of matrixArray;" class="matrix">
-    <span class="column {{col === '1'? 'green' : ''}}" *ngFor="let col of row">{{col}}</span>
+    <span class="column {{col === 1 ? 'green' : ''}}" *ngFor="let col of row">{{col}}</span>
   </div>
 </div>
 <div>Total figures counter: {{figuresCount}}</div>
+
+<app-matrix-form (changedMatrix)="onChangedMatrix($event)"></app-matrix-form>

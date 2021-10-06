@@ -9,33 +9,49 @@ export class AppComponent implements OnInit {
   title = 'AngularMatrixFigureCounter';
   figuresCount: number = 0;
 
-  matrixArray: string[][] = [
-    ['0', '0', '0', '1', '1', '0', '0', '0'],
-    ['0', '1', '0', '0', '1', '1', '1', '0'],
-    ['0', '1', '1', '0', '0', '0', '1', '0'],
-    ['0', '0', '0', '0', '0', '0', '1', '0'],
-    ['1', '0', '1', '1', '1', '0', '0', '0'],
-    ['0', '0', '0', '0', '0', '0', '1', '0']
+  matrixArray: number[][] = [
+    [0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 1, 0, 0, 1, 1, 1, 0],
+    [0, 1, 1, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0],
+    [1, 0, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0]
   ]
 
   resultArr = this.matrixArray.map(item => [...item]);
 
   markNeighbourElems(matrix: any, row: number, col: number): void {
     matrix[row][col] = '';
-    if (matrix[row][col - 1] === '1'){
+    if (matrix[row][col - 1] === 1){
       this.markNeighbourElems(matrix, row, col - 1);
     }
 
-    if (matrix[row][col + 1] === '1'){
+    if (matrix[row][col + 1] === 1){
       this.markNeighbourElems(matrix, row, col + 1);
     }
 
-    if (matrix?.[row - 1]?.[col] === '1'){
+    if (matrix?.[row - 1]?.[col] === 1){
       this.markNeighbourElems(matrix, row - 1 , col);
     }
 
-    if (matrix?.[row + 1]?.[col] === '1'){
+    if (matrix?.[row + 1]?.[col] === 1){
       this.markNeighbourElems(matrix, row + 1, col + 1);
+    }
+
+    if (matrix?.[row + 1]?.[col + 1] === 1){
+      this.markNeighbourElems(matrix, row + 1, col + 1);
+    }
+
+    if (matrix?.[row + 1]?.[col - 1] === 1){
+      this.markNeighbourElems(matrix, row + 1, col - 1);
+    }
+
+    if (matrix?.[row - 1]?.[col + 1] === 1){
+      this.markNeighbourElems(matrix, row - 1 , col + 1);
+    }
+
+    if (matrix?.[row - 1]?.[col - 1] === 1){
+      this.markNeighbourElems(matrix, row - 1, col - 1);
     }
   }
 
@@ -48,7 +64,7 @@ export class AppComponent implements OnInit {
 
     for (let i = 0; i < matrix.length; i++) {
       for(let k = 0; k < matrix[i].length; k++){
-        if (matrix[i][k] === '1'){
+        if (matrix[i][k] === 1){
           counter++;
           this.markNeighbourElems(matrix, i, k);
         }
@@ -59,5 +75,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.figuresCount = this.numOfIslands(this.resultArr);
+  }
+
+  onChangedMatrix(event: any) {
+    let arr_ = event.map((element: any) => [...element])
+    this.matrixArray = event;
+    this.figuresCount = this.numOfIslands(arr_);
   }
 }
