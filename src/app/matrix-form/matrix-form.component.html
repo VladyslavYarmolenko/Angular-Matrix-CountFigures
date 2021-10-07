@@ -1,0 +1,20 @@
+<form [formGroup]="matrixCreator">
+  <p>Please, enter matrix quantity rows:
+    <input class="data-input" [min]="0" [max]="10" type="number" formControlName="rowsNum">
+  </p>
+  <p>Please, enter matrix quantity columns:
+    <input class="data-input" [min]="0" [max]="10" type="number" formControlName="columnsNum">
+  </p>
+  <button [disabled]="isDisabled" (click)="createMatrix()">Create matrix</button>
+  <button (click)="changeMatrix()">Change matrix</button>
+</form>
+
+<form [formGroup]="resultArr">
+  <div class="matrix-wrapper">
+    <div *ngFor="let row of resultArr.controls;" class="matrix">
+      <div *ngFor="let col of row.controls;">
+        <input class="data-input" type="number" [min]="0" [max]="1" [formControl]="col">
+      </div>
+    </div>
+  </div>
+</form>
